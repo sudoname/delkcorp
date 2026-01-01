@@ -1,5 +1,6 @@
 'use client';
 
+import { PublicLayout } from '@/components/PublicLayout';
 import { PageHeader } from '@/components/PageHeader';
 import { Section } from '@/components/Section';
 import { CTABand } from '@/components/CTABand';
@@ -132,7 +133,7 @@ export default function Services() {
   }, []);
 
   return (
-    <>
+    <PublicLayout>
       <PageHeader
         title="Services"
         subtitle="Four pillars of consulting excellence, each delivering measurable commercial performance improvement through structured strategy and hands-on implementation."
@@ -255,6 +256,6 @@ export default function Services() {
           href: '/about'
         }}
       />
-    </>
+    </PublicLayout>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { PublicLayout } from '@/components/PublicLayout';
 import { PageHeader } from '@/components/PageHeader';
 import { Section } from '@/components/Section';
 import { ContactForm } from '@/components/ContactForm';
@@ -29,7 +30,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <>
+    <PublicLayout>
       <PageHeader
         title="Get in Touch"
         subtitle="Ready to improve execution and commercial performance? Let's start a conversation."
@@ -215,6 +216,6 @@ export default function Contact() {
           </motion.div>
         </div>
       </Section>
-    </>
+    </PublicLayout>
   );
 }

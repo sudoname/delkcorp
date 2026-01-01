@@ -1,5 +1,6 @@
 'use client';
 
+import { PublicLayout } from '@/components/PublicLayout';
 import { PageHeader } from '@/components/PageHeader';
 import { Section } from '@/components/Section';
 import { Card, GlassCard } from '@/components/Card';
@@ -33,7 +34,7 @@ const faqItems = [
 
 export default function About() {
   return (
-    <>
+    <PublicLayout>
       <PageHeader
         title="About Delkcorp"
         subtitle="A global consulting firm built on operator discipline, execution focus, and pragmatic commercial improvement."
@@ -292,6 +293,6 @@ export default function About() {
           href: '/services'
         }}
       />
-    </>
+    </PublicLayout>
   );
 }

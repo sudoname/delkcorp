@@ -1,5 +1,6 @@
 'use client';
 
+import { PublicLayout } from '@/components/PublicLayout';
 import { Button } from '@/components/Button';
 import { Card, GlassCard } from '@/components/Card';
 import { Section } from '@/components/Section';
@@ -20,7 +21,7 @@ import {
 
 export default function Home() {
   return (
-    <>
+    <PublicLayout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
@@ -412,6 +413,6 @@ export default function Home() {
           href: '/services'
         }}
       />
-    </>
+    </PublicLayout>
   );
 }
