@@ -1,8 +1,29 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Mail, Phone, Linkedin } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [contactInfo, setContactInfo] = useState({
+    email: 'contact@delkcorp.com',
+    phone: '+1 (234) 567-890',
+    linkedin: '#',
+  });
+
+  useEffect(() => {
+    fetch('/api/contact-info')
+      .then((res) => res.json())
+      .then((data) => {
+        setContactInfo({
+          email: data.email || contactInfo.email,
+          phone: data.phone || contactInfo.phone,
+          linkedin: data.linkedin || contactInfo.linkedin,
+        });
+      })
+      .catch((error) => console.error('Failed to fetch contact info:', error));
+  }, []);
 
   return (
     <footer className="border-t border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]">
@@ -79,19 +100,19 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:contact@delkcorp.com" className="hover:text-accent-blue transition-colors">
-                  contact@delkcorp.com
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-accent-blue transition-colors">
+                  {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+1234567890" className="hover:text-accent-blue transition-colors">
-                  +1 (234) 567-890
+                <a href={`tel:${contactInfo.phone.replace(/\D/g, '')}`} className="hover:text-accent-blue transition-colors">
+                  {contactInfo.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
                 <Linkedin className="h-4 w-4" />
-                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">
+                <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">
                   LinkedIn
                 </a>
               </li>

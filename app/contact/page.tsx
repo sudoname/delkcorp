@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { PageHeader } from '@/components/PageHeader';
 import { Section } from '@/components/Section';
 import { ContactForm } from '@/components/ContactForm';
@@ -8,6 +9,25 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 export default function Contact() {
+  const [contactInfo, setContactInfo] = useState({
+    email: 'contact@delkcorp.com',
+    phone: '+1 (234) 567-890',
+    location: 'Global',
+  });
+
+  useEffect(() => {
+    fetch('/api/contact-info')
+      .then((res) => res.json())
+      .then((data) => {
+        setContactInfo({
+          email: data.email || contactInfo.email,
+          phone: data.phone || contactInfo.phone,
+          location: data.location || contactInfo.location,
+        });
+      })
+      .catch((error) => console.error('Failed to fetch contact info:', error));
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -48,10 +68,10 @@ export default function Contact() {
                       Email
                     </p>
                     <a
-                      href="mailto:contact@delkcorp.com"
+                      href={`mailto:${contactInfo.email}`}
                       className="text-[rgb(var(--color-text))] hover:text-accent-blue transition-colors font-medium"
                     >
-                      contact@delkcorp.com
+                      {contactInfo.email}
                     </a>
                   </div>
                 </div>
@@ -65,10 +85,10 @@ export default function Contact() {
                       Phone
                     </p>
                     <a
-                      href="tel:+1234567890"
+                      href={`tel:${contactInfo.phone.replace(/\D/g, '')}`}
                       className="text-[rgb(var(--color-text))] hover:text-accent-blue transition-colors font-medium"
                     >
-                      +1 (234) 567-890
+                      {contactInfo.phone}
                     </a>
                   </div>
                 </div>
@@ -82,7 +102,7 @@ export default function Contact() {
                       Global Presence
                     </p>
                     <p className="text-[rgb(var(--color-text))] font-medium">
-                      Operating worldwide
+                      {contactInfo.location}
                     </p>
                     <p className="text-sm text-[rgb(var(--color-text-muted))] mt-1">
                       Remote & on-site engagements
