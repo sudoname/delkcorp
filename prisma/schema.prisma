@@ -41,3 +41,12 @@ model ContactMessage {
 
   @@map("contact_messages")
 }
+
+model PageView {
+  id        String   @id @default(uuid())
+  page      String
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@map("page_views")
+}

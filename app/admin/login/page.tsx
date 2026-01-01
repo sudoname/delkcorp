@@ -90,11 +90,6 @@ export default function AdminLogin() {
               {isSubmitting ? 'Logging in...' : 'Login'}
             </Button>
           </form>
-
-          <div className="mt-6 text-center text-sm text-[rgb(var(--color-text-muted))]">
-            <p>Default credentials:</p>
-            <p className="font-mono mt-1">admin@delkcorp.com / admin123</p>
-          </div>
         </div>
       </div>
     </div>
