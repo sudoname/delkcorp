@@ -113,6 +113,11 @@ export function Footer() {
               </Link>
             </div>
           </div>
+          <div className="mt-6 text-center">
+            <p className="text-xs text-[rgb(var(--color-text-muted))]">
+              Built with ❤️ by <a href="https://khaninnovations.com" target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:text-accent-cyan transition-colors">Khan Innovations</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
